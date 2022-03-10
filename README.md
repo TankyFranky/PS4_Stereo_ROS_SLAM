@@ -36,7 +36,11 @@ The following steps should be taken to calibrate your PS4 camera. The repository
  4. Copy and paste the left and right camera calibration parameters to their respective .txt files found in the calibration folder. Be sure to read the included comments in each file.
 
 ## Example Results
-TO BE POSTED
+Examples have been processed using cloud compare.
+
+#### Slice of Bedroom Scan
+![Corner of my Bedroom](https://i.imgur.com/LtXSbhk.png)
+
 ## Extras
 A few extras have been included in this package.
 
