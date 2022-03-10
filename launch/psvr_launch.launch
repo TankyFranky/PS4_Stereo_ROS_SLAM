@@ -1,0 +1,43 @@
+<launch>
+
+<!-- Setup RTAB-Map -->
+<include file="$(find rtabmap_ros)/launch/stereo_mapping.launch">
+<arg name="rtabmap_args"  value="--delete_db_on_start" />
+<arg name="left_image_topic"  value="/psvr/right/image_rect_color" />
+<arg name="right_image_topic" value="/psvr/left/image_rect_color" />
+<arg name="left_camera_info_topic" value="/psvr/left/camera_info" />
+<arg name="right_camera_info_topic" value="/psvr/right/camera_info" />
+<arg name="rviz" value="false" />
+<arg name="approx_sync" value="false" />
+<arg name="visual_odometry" value="true" />
+</include>
+
+
+
+<!-- Start frame capturing from psvr camera -->
+<node pkg="PSVR_cam_core" type="psvr_cam_publisher.py" name="psvr_cam_publisher">
+</node>
+
+<!-- Rotate the camera frame. -->
+<arg name="pi/2" value="1.5707963267948966" />
+<arg name="optical_rotate" value="0 0 0 -$(arg pi/2) 0 -$(arg pi/2)" />
+<node pkg="tf" type="static_transform_publisher" name="camera_base_link"
+        args="$(arg optical_rotate) base_link psvr 100" />
+        
+<!-- Rotate the odometry frame. -->    
+<arg name="odom_rotate" value="0 0 0 -$(arg pi/2) 0 -$(arg pi/2)" />
+<node pkg="tf" type="static_transform_publisher" name="odom_base_link"
+        args="$(arg optical_rotate) odom base_link 100" />  
+
+
+<!-- Stereo image processing -->
+<node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" ns="psvr">
+<param name="approximate_sync" value="false" />
+</node>
+
+
+<!-- Setup rqt_reconfigure to allow live stereo parameter testing (only tunes for rviz) -->
+<node pkg="rqt_reconfigure" type="rqt_reconfigure" name="rqt_reconfigure">
+</node>
+
+</launch>

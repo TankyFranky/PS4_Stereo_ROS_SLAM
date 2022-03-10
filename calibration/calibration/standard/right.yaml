@@ -1,0 +1,36 @@
+image_width: 1264
+image_height: 800
+camera_name: narrow_stereo/right
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [837.35026,   0.     , 631.00165,
+           0.     , 836.5276 , 409.16273,
+           0.     ,   0.     ,   1.     ]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [0.001410, -0.062667, -0.000461, -0.001419, 0.000000]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [ 0.99903241,  0.0035372 ,  0.04383752,
+         -0.00331259,  0.99998102, -0.00519523,
+         -0.04385506,  0.00504499,  0.99902517]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [858.86945,   0.     , 555.67165,  -68.32157,
+           0.     , 858.86945, 420.85572,   0.     ,
+           0.     ,   0.     ,   1.     ,   0.     ]
+binning_x: 1
+binning_y: 1
+roi: 
+  x_offset: 0
+  y_offset: 0
+  height: 0
+  width: 0
+  do_rectify: True
+  
+  # P(0,3) of the projection matrix should be set to negative. Positive values cause errors for RTAB-Map stereo odometry
