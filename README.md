@@ -21,7 +21,7 @@ The following packages and softwares are required. A good understanding of how e
  3. Run camset (`camset`) and mark down the input device number of the PS4 camera. Set the cameras exposure to *shutter priority* instead of *automatic*.
  4. In `psvr_cam_publisher.py` set the input device number to the number marked down from step 3. Only the variable at the top requires changing.
  5. Complete camera calibration. A sample calibration grid has been provided, be sure to mount it to a flat surface like cardboard or a binder.
- 6. Run the `psvr_launch` launch file. `roslaunch PS4_Stereo_ROS_SLAM psvr_launch.launch`
+ 6. Run the `psvr_launch` launch file. `roslaunch PSVR_cam_core psvr_launch.launch`
 
 ## Node Map
 If setup correctly the node map should look like the following.
